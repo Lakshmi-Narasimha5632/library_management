@@ -1,0 +1,5 @@
+{% extends "base.html" %}
+{% block title %}Remove {{ object.title }} · The Reading Room{% endblock %}
+{% block content %}
+<section class="container confirm-section"><p class="eyebrow">Remove from collection</p><h1>Let this book<br><em>go?</em></h1><p class="confirm-copy">You are about to remove <strong>{{ object.title }}</strong> by {{ object.author }}. This cannot be undone.</p><form method="post">{% csrf_token %}<button class="button button-danger" type="submit">Yes, delete book</button><a class="button button-light" href="{{ object.get_absolute_url }}">Keep book</a></form></section>
+{% endblock %}

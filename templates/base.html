@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}The Reading Room{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container nav-wrap">
+            <a class="brand" href="{% url 'home' %}"><span class="brand-mark">R</span><span>the reading room</span></a>
+            <nav class="main-nav" aria-label="Main navigation">
+                <a href="{% url 'home' %}" class="{% if request.resolver_match.url_name == 'home' %}active{% endif %}">Overview</a>
+                <a href="{% url 'book-list' %}" class="{% if request.resolver_match.url_name == 'book-list' %}active{% endif %}">Catalogue</a>
+                <a class="nav-add" href="{% url 'book-create' %}"><span>+</span> Add book</a>
+            </nav>
+        </div>
+    </header>
+    {% if messages %}
+        <div class="container messages">
+            {% for message in messages %}<div class="message">{{ message }}</div>{% endfor %}
+        </div>
+    {% endif %}
+    <main>{% block content %}{% endblock %}</main>
+    <footer class="site-footer"><div class="container"><span>the reading room</span><span>Make space for a good story.</span></div></footer>
+</body>
+</html>
